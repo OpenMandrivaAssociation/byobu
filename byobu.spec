@@ -1,5 +1,5 @@
 %define name	byobu
-%define version 2.8
+%define version 2.15
 %define release %mkrel 1
 
 Summary: 	Profiles for the GNU screen manager
@@ -55,6 +55,7 @@ install -m 755 byobu-config %{buildroot}%{_bindir}/
 install -m 755 byobu-export %{buildroot}%{_bindir}/
 install -m 755 byobu-status %{buildroot}%{_bindir}/
 install -m 755 byobu-status-detail %{buildroot}%{_bindir}/
+install -m 755 byobu-janitor %{buildroot}%{_bindir}/
 install -m 755 select-screen-profile %{buildroot}%{_bindir}/
 install -m 755 screen-launcher-install %{buildroot}%{_datadir}/byobu/
 install -m 755 screen-launcher-uninstall %{buildroot}%{_datadir}/byobu/
