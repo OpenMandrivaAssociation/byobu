@@ -1,5 +1,5 @@
 %define name	byobu
-%define version 2.15
+%define version 2.20
 %define release %mkrel 1
 
 Summary: 	Profiles for the GNU screen manager
@@ -12,7 +12,8 @@ Group:		Terminals
 Url:		https://launchpad.net/screen-profiles
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch:	noarch
-Requires:	screen, python, newt
+BuildRequires:	gettext
+Requires:	screen, python >= 2.5, newt, gettext
 
 %description
 byobu includes a set of profiles for the GNU screen window
@@ -35,11 +36,11 @@ rm -f profiles/{generate,profile.skel}
 %install
 %__rm -rf %{buildroot}
 
-install -m 755 -d %{buildroot}%{_bindir}/
-install -m 755 -d %{buildroot}%{_mandir}/man1/
 install -m 755 -d %{buildroot}/usr/lib/byobu/
 install -m 755 -d %{buildroot}%{_datadir}/locale/
 install -m 755 -d %{buildroot}%{_datadir}/byobu/{profiles,keybindings,windows}
+install -m 755 -d %{buildroot}%{_bindir}/
+install -m 755 -d %{buildroot}%{_mandir}/man1/
 
 install -m 755 bin/* %{buildroot}/usr/lib/byobu/
 for d in `find po/locale/ -maxdepth 1 -mindepth 1`; do 
@@ -56,11 +57,11 @@ install -m 755 byobu-export %{buildroot}%{_bindir}/
 install -m 755 byobu-status %{buildroot}%{_bindir}/
 install -m 755 byobu-status-detail %{buildroot}%{_bindir}/
 install -m 755 byobu-janitor %{buildroot}%{_bindir}/
-install -m 755 select-screen-profile %{buildroot}%{_bindir}/
-install -m 755 screen-launcher-install %{buildroot}%{_datadir}/byobu/
-install -m 755 screen-launcher-uninstall %{buildroot}%{_datadir}/byobu/
+install -m 755 byobu-select-profile %{buildroot}%{_bindir}/
+install -m 755 byobu-launcher-install %{buildroot}%{_datadir}/byobu/
+install -m 755 byobu-launcher-uninstall %{buildroot}%{_datadir}/byobu/
 install -m 755 motd+shell %{buildroot}%{_bindir}/
-install -m 755 screen-launcher %{buildroot}%{_bindir}/
+install -m 755 byobu-launcher %{buildroot}%{_bindir}/
 
 install -m 644 *.1 %{buildroot}%{_mandir}/man1/
 
