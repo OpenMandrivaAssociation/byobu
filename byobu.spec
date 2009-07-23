@@ -1,5 +1,5 @@
 %define name	byobu
-%define version 2.20
+%define version 2.23
 %define release %mkrel 1
 
 Summary: 	Profiles for the GNU screen manager
@@ -36,20 +36,23 @@ rm -f profiles/{generate,profile.skel}
 %install
 %__rm -rf %{buildroot}
 
-install -m 755 -d %{buildroot}/usr/lib/byobu/
-install -m 755 -d %{buildroot}%{_datadir}/locale/
-install -m 755 -d %{buildroot}%{_datadir}/byobu/{profiles,keybindings,windows}
-install -m 755 -d %{buildroot}%{_bindir}/
-install -m 755 -d %{buildroot}%{_mandir}/man1/
+%__install -m 755 -d %{buildroot}/usr/lib/byobu/
+%__install -m 755 -d %{buildroot}%{_sysconfdir}/byobu/
+%__install -m 755 -d %{buildroot}%{_datadir}/locale/
+%__install -m 755 -d %{buildroot}%{_datadir}/byobu/{profiles,keybindings,windows}
+%__install -m 755 -d %{buildroot}%{_bindir}/
+%__install -m 755 -d %{buildroot}%{_mandir}/man1/
 
-install -m 755 bin/* %{buildroot}/usr/lib/byobu/
+%__install -m 755 bin/* %{buildroot}/usr/lib/byobu/
 for d in `find po/locale/ -maxdepth 1 -mindepth 1`; do 
     install -D -m 755 $d/LC_MESSAGES/byobu.mo %{buildroot}%{_datadir}/locale/`basename $d`/LC_MESSAGES/byobu.mo ;
 done
 
-install -m 644 profiles/* %{buildroot}%{_datadir}/byobu/profiles/
-install -m 644 keybindings/* %{buildroot}%{_datadir}/byobu/keybindings/
-install -m 644 windows/* %{buildroot}%{_datadir}/byobu/windows/
+%__install -m 644 profiles/* %{buildroot}%{_datadir}/byobu/profiles/
+%__install -m 644 keybindings/* %{buildroot}%{_datadir}/byobu/keybindings/
+%__install -m 644 windows/* %{buildroot}%{_datadir}/byobu/windows/
+
+%__install -m 644 statusrc %{buildroot}%{_sysconfdir}/byobu/
 
 install -m 755 byobu %{buildroot}%{_bindir}/
 install -m 755 byobu-config %{buildroot}%{_bindir}/
@@ -72,6 +75,7 @@ install -m 644 *.1 %{buildroot}%{_mandir}/man1/
 %defattr(-,root,root)
 %doc README COPYING doc/help.txt
 %{_bindir}/*
+%{_sysconfdir}/byobu/*
 %{_datadir}/%{name}/*
 %{_datadir}/locale/*
 /usr/lib/%{name}/*
