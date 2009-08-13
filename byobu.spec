@@ -1,5 +1,5 @@
 %define name	byobu
-%define version 2.23
+%define version 2.25
 %define release %mkrel 1
 
 Summary: 	Profiles for the GNU screen manager
@@ -9,7 +9,7 @@ Release: 	%{release}
 Source0: 	http://launchpad.net/byobu/trunk/%{version}/+download/%{name}_%{version}.orig.tar.gz
 License: 	GPLv3+
 Group:		Terminals
-Url:		https://launchpad.net/screen-profiles
+Url:		https://launchpad.net/byobu
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch:	noarch
 BuildRequires:	gettext
@@ -31,7 +31,6 @@ of the available profiles.
 %build
 make -f debian/rules install-po
 make -f debian/rules build
-rm -f profiles/{generate,profile.skel}
 
 %install
 %__rm -rf %{buildroot}
