@@ -1,5 +1,5 @@
 %define name	byobu
-%define version 2.29
+%define version 2.37
 %define release %mkrel 1
 
 Summary: 	Profiles for the GNU screen manager
