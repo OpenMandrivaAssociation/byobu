@@ -1,6 +1,6 @@
 %define name	byobu
 %define version 2.38
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: 	Profiles for the GNU screen manager
 Name: 	 	%{name}
@@ -29,11 +29,12 @@ of the available profiles.
 %setup -q -n %{name}_%{version}.orig
 
 %build
-make -f debian/rules install-po
-make -f debian/rules build
+profiles_generator/generate
 
 %install
 %__rm -rf %{buildroot}
+
+make -f debian/rules install-po
 
 %__install -m 755 -d %{buildroot}/usr/lib/byobu/
 %__install -m 755 -d %{buildroot}%{_sysconfdir}/byobu/
@@ -50,6 +51,7 @@ done
 %__install -m 644 profiles/* %{buildroot}%{_datadir}/byobu/profiles/
 %__install -m 644 keybindings/* %{buildroot}%{_datadir}/byobu/keybindings/
 %__install -m 644 windows/* %{buildroot}%{_datadir}/byobu/windows/
+ln -sf f-keys ${RPM_BUILD_ROOT}/usr/share/byobu/keybindings/common
 
 %__install -m 644 statusrc %{buildroot}%{_sysconfdir}/byobu/
 
@@ -67,16 +69,17 @@ install -m 755 byobu-launcher %{buildroot}%{_bindir}/
 
 install -m 644 *.1 %{buildroot}%{_mandir}/man1/
 
+%find_lang %{name}
+
 %clean
 %__rm -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root)
 %doc README COPYING doc/help.txt
 %{_bindir}/*
 %{_sysconfdir}/byobu/*
-%{_datadir}/%{name}/*
-%{_datadir}/locale/*
-/usr/lib/%{name}/*
+%{_datadir}/%{name}
+/usr/lib/%{name}
 %{_mandir}/man1/*
 
