@@ -1,5 +1,5 @@
 %define name	byobu
-%define version 2.76
+%define version 2.80
 %define release %mkrel 1
 
 Summary: 	Profiles for the GNU screen manager
@@ -56,10 +56,10 @@ done
 %dir %{_sysconfdir}/%{name}
 %config %{_sysconfdir}/%{name}/*
 %{_bindir}/%{name}*
-%{_bindir}/motd+shell
+%{_bindir}/shell
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}/*
 %{_datadir}/locale/*/LC_MESSAGES/%{name}.mo
 %{_mandir}/man1/%{name}*.1.*
-%{_mandir}/man1/motd+shell.1.*
+%{_mandir}/man1/shell.1.*
 %{_prefix}/lib/%{name}/*
