@@ -1,5 +1,5 @@
 %define name	byobu
-%define version 2.80
+%define version 3.1
 %define release %mkrel 1
 
 Summary: 	Profiles for the GNU screen manager
@@ -28,21 +28,12 @@ of the available profiles.
 %prep
 %setup -q
 
+%build
+%configure2_5x
+
 %install
 %__rm -rf %{buildroot}
-
-mkdir -p %{buildroot}
-cp -ar etc %{buildroot}
-cp -ar usr %{buildroot}
-rm -rf %{buildroot}/usr/share/doc
-
-for po in po/*.po
-do
-    lang=${po#po/}
-    lang=${lang%.po}
-    mkdir -p ${RPM_BUILD_ROOT}/usr/share/locale/${lang}/LC_MESSAGES/
-    msgfmt ${po} -o ${RPM_BUILD_ROOT}/usr/share/locale/${lang}/LC_MESSAGES/%{name}.mo
-done
+%makeinstall
 
 %clean
 %__rm -rf %{buildroot}
@@ -53,13 +44,10 @@ done
 %doc usr/share/doc/%{name}/help.txt
 %dir %{_datadir}/%{name}
 %dir %{_prefix}/lib/%{name}
-%dir %{_sysconfdir}/%{name}
-%config %{_sysconfdir}/%{name}/*
 %{_bindir}/%{name}*
 %{_bindir}/shell
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}/*
-%{_datadir}/locale/*/LC_MESSAGES/%{name}.mo
 %{_mandir}/man1/%{name}*.1.*
 %{_mandir}/man1/shell.1.*
 %{_prefix}/lib/%{name}/*
