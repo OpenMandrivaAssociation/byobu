@@ -1,5 +1,5 @@
 %define name	byobu
-%define version 4.1
+%define version 4.25
 %define release %mkrel 1
 
 Summary: 	Profiles for the GNU screen manager
@@ -45,10 +45,12 @@ of the available profiles.
 %dir %{_datadir}/%{name}
 %dir %{_prefix}/lib/%{name}
 %{_bindir}/%{name}*
-%{_bindir}/shell
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}/*
 %{_mandir}/man1/%{name}*.1.*
-%{_mandir}/man1/shell.1.*
 %{_prefix}/lib/%{name}/*
 %{_prefix}/lib/%{name}/.notify_osd
+%{_prefix}/lib/%{name}/.common
+%{_prefix}/lib/%{name}/.constants
+%{_prefix}/lib/%{name}/.dirs
+%{_prefix}/lib/%{name}/.shutil
