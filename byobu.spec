@@ -1,6 +1,6 @@
 %define name	byobu
-%define version 4.37
-%define release %mkrel 1
+%define version 4.54
+%define release 1
 
 Summary: 	Profiles for the GNU screen manager
 Name: 	 	%{name}
@@ -10,7 +10,6 @@ Source0: 	http://launchpad.net/byobu/trunk/%{version}/+download/%{name}_%{versio
 License: 	GPLv3+
 Group:		Terminals
 Url:		https://launchpad.net/byobu
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch:	noarch
 BuildRequires:	gettext
 Requires:	screen, python >= 2.5, newt, gettext
@@ -32,25 +31,19 @@ of the available profiles.
 %configure2_5x
 
 %install
-%__rm -rf %{buildroot}
-%makeinstall
-
-%clean
-%__rm -rf %{buildroot}
+%makeinstall_std
 
 %files 
 %defattr(-,root,root)
 %doc README COPYING 
-%doc usr/share/doc/%{name}/help.txt
+%doc usr/share/doc/%{name}/help.screen.txt
+%doc usr/share/doc/%{name}/help.tmux.txt
 %dir %{_datadir}/%{name}
 %dir %{_prefix}/lib/%{name}
 %{_bindir}/%{name}*
+%{_sysconfdir}/%{name}/
+%{_sysconfdir}/profile.d/Z97-%{name}.sh
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}/*
 %{_mandir}/man1/%{name}*.1.*
 %{_prefix}/lib/%{name}/*
-%{_prefix}/lib/%{name}/.notify_osd
-%{_prefix}/lib/%{name}/.common
-%{_prefix}/lib/%{name}/.constants
-%{_prefix}/lib/%{name}/.dirs
-%{_prefix}/lib/%{name}/.shutil
