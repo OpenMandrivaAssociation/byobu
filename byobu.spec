@@ -1,6 +1,6 @@
 %define name	byobu
 %define version 5.43
-%define release 1
+%define release 2
 Summary: 	Profiles for the GNU screen manager
 Name: 	 	%{name}
 Version: 	%{version}
