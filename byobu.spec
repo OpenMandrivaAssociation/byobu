@@ -6,6 +6,7 @@ Name: 	 	%{name}
 Version: 	%{version}
 Release: 	%{release}
 Source0: 	http://launchpad.net/byobu/trunk/%{version}/+download/%{name}_%{version}.orig.tar.gz
+Source100: 	%{name}.rpmlintrc
 License: 	GPLv3+
 Group:		Terminals
 URL:		https://launchpad.net/byobu
@@ -32,7 +33,7 @@ of the available profiles.
 %install
 %makeinstall_std
 chmod -x %{buildroot}%{_datadir}/applications/%{name}.desktop
-
+sed -i -e '1d;2i#!/bin/sh' %{buildroot}%{_sysconfdir}/profile.d/Z97-%{name}.sh
 
 
 %post
@@ -42,7 +43,6 @@ ln -s /usr/share/byobu/pixmaps/byobu.svg /usr/share/pixmaps/byobu.svg
 rm -rf /usr/share/pixmaps/byobu.svg
 
 %files 
-%defattr(-,root,root)
 %doc README COPYING ChangeLog
 %doc usr/share/doc/%{name}/help.screen.txt
 %doc usr/share/doc/%{name}/help.tmux.txt

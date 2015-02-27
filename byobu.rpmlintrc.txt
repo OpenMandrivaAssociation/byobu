@@ -1,0 +1,7 @@
+addFilter("E: devel-file-in-non-devel-package")
+addFilter("W: dangerous-command-in-%postun")
+addFilter("W: dangerous-command-in-%post")
+addFilter("W: no-manual-page-for-binary")
+addFilter("W: non-conffile-in-etc")
+addFilter("W: not-standard-release-extension")
+addFilter("W: only-non-binary-in-usr-lib")
