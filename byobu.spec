@@ -4,7 +4,7 @@
 Summary: 	Profiles for the GNU screen manager
 Name: 	 	%{name}
 Version: 	%{version}
-Release: 	%{release}
+Release:	1
 Source0: 	http://launchpad.net/byobu/trunk/%{version}/+download/%{name}_%{version}.orig.tar.gz
 Source100: 	%{name}.rpmlintrc
 License: 	GPLv3+
