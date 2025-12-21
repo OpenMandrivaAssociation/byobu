@@ -11,6 +11,11 @@ License: 	GPLv3+
 Group:		Terminals
 URL:		https://launchpad.net/byobu
 BuildArch:	noarch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gettext
 Requires:	screen, python >= 2.5, newt, gettext
 
